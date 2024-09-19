@@ -8,14 +8,26 @@ const session = require('express-session');
 const passport = require('passport');
 const port = process.env.PORT 
 const cors = require('cors')
+const helmet = require('helmet')
+const MongoStore = require('connect-mongo')
 //passport config file
 require('./config/passport')(passport);
 
 // Logger
-app.use(morgan("dev"))
+app.use(morgan("combined"))
+
+//helmet
+app.use(helmet());
 
 // enable cross origin resource sharing
-app.use(cors());
+app.use(
+    cors(
+    //     {
+    //   credentials: true,
+    //   origin: 'https://tesmidesign.com',
+    // }
+),
+  );
 
 // body parser
 app.use(express.urlencoded({extended: false}));
@@ -23,10 +35,12 @@ app.use(express.json());
 
 //Express session middleware
 app.use(session({
-    secret: 'keyboard cat',
+    store: MongoStore.create({mongoUrl: process.env.DATABASE_URL}),
+    secret: process.env.SESSION_SECRET,
     resave: true,
     saveUninitialized: true,
-    // cookie: { secure: true }
+    cookie: { secure: process.env.NODE_ENV === 'production' }
+
   }));
 
 // Passport middlware
@@ -44,6 +58,22 @@ app.use((req, res, next) => {
     next();
 });
 
+// unhandled errors
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send('Something broke!');
+  });
+  
+
+// rate-limiting
+const rateLimit = require('express-rate-limit');
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // limit each IP to 100 requests per windowMs
+});
+app.use(limiter);
+
+
 // Routes
  app.use('/app', require('./routes/app'))
 app.use('/users', require('./routes/users'))
@@ -52,9 +82,12 @@ app.use('/checkout', require('./routes/checkout'))
 app.use('/ratings', require('./routes/rating'))
 
 // // Connect to DB
-mongoose.connect(process.env.DATABASE_URL) 
-.then(() => console.log("MongoDB connected"))
-.catch(err => console.log(err));
+mongoose.connect(process.env.DATABASE_URL, {
+    
+    serverSelectionTimeoutMS: 500, // 5 seconds
+  }).then(() => console.log('MongoDB connected'))
+    .catch(err => console.log('MongoDB connection error:', err));
+  
 
 
 

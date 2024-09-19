@@ -36,7 +36,7 @@ router.post('/add-review/:productId', ensureAuthenticated, async (req, res) => {
 });
 
 // update rating
-router.put('/update-review/:productId/:ratingId', async (req, res) => {
+router.put('/update-review/:productId/:ratingId', ensureAuthenticated, async (req, res) => {
     try {
         const { review, rating} = req.body; 
         const userId = req.user._id
@@ -68,21 +68,21 @@ router.put('/update-review/:productId/:ratingId', async (req, res) => {
     }
 })
 
-// delete rating
-router.delete('/delete-review/:ratingId', async (req, res) => {
-    try {
-        const{ ratingId } = req.params;
-        const deletedReview = await Rating.findByIdAndDelete(ratingId);
-        if (!deletedReview) {
-            return res.status(404).json({ message: "Review not found" });
-        }
-        res.status(200).json(deletedReview);
+// // delete rating
+// router.delete('/delete-review/:ratingId', ensureAuthenticated, async (req, res) => {
+//     try {
+//         const{ ratingId } = req.params;
+//         const deletedReview = await Rating.findByIdAndDelete(ratingId);
+//         if (!deletedReview) {
+//             return res.status(404).json({ message: "Review not found" });
+//         }
+//         res.status(200).json(deletedReview);
 
-    } catch (error) {
-        res.status(500).send({ message: error.message })
+//     } catch (error) {
+//         res.status(500).send({ message: error.message })
 
-    }
-})
+//     }
+// })
 
 
 // get reviews for a product
