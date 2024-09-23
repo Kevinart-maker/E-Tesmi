@@ -88,7 +88,7 @@ app.use('/ratings', require('./routes/rating'))
 // // Connect to DB
 mongoose.connect(process.env.DATABASE_URL, {
     
-    serverSelectionTimeoutMS: 500, // 5 seconds
+    serverSelectionTimeoutMS: 5000, // 5 seconds
   }).then(() => console.log('MongoDB connected'))
     .catch(err => console.log('MongoDB connection error:', err));
   

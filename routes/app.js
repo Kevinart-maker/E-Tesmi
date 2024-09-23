@@ -29,7 +29,7 @@ router.get('/products',  async(req, res) => {
 router.get('/products/:id', async(req, res) => {
     try{
         const id = req.params.id
-        const product = await Product.findById(id);
+        const product = await Product.findById(id).wtimeout(20000);
         res.status(200).json(product)
     }catch(err){
         res.status(500).json({ msg: err.message })
