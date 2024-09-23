@@ -93,16 +93,21 @@ router.post('/register', (req, res) => {
 
 // Login request handler
 router.post('/login', (req, res, next) => {
-    passport.authenticate('local', {
-        successRedirect: '/app/dashboard',
-        failureRedirect: '/users/login',
-        failureFlash: true,
+    passport.authenticate('local', (err, user, info) => {
+        if (err) return next(err);
+        if (!user) return res.status(400).json({ message: "This user does not exist" });
+
+        req.logIn(user, (err) => {
+            if (err) return next(err);
+
+            return res.json({ id: user._id, email: user.email, name: user.name });
+        });
     })(req, res, next);
 });
 
 // Logout request handler
 router.get('/logout', (req, res, next) => {
-    req.logout((err) => {
+    req.logOut((err) => {
         if (err) {
             return next(err); // Handle the error if any
         }

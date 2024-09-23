@@ -6,15 +6,16 @@ const mongoose = require('mongoose');
 const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require('passport');
+require('./config/passport')(passport);
+const path = require('path');
 const port = process.env.PORT 
 const cors = require('cors')
 const helmet = require('helmet')
 const MongoStore = require('connect-mongo')
 //passport config file
-require('./config/passport')(passport);
 
 // Logger
-app.use(morgan("combined"))
+app.use(morgan("dev"))
 
 //helmet
 app.use(helmet());
@@ -28,6 +29,9 @@ app.use(
     // }
 ),
   );
+
+//Static middleware
+app.use('/static', express.static(path.join(__dirname, 'public')))  
 
 // body parser
 app.use(express.urlencoded({extended: false}));

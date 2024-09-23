@@ -9,11 +9,11 @@ router.get("/", (req, res) => {
     
 })
 
-// user is logged in
-router.get("/dashboard", ensureAuthenticated, (req, res) => {
-    res.send("Hello, World!, welcome to dashboard route");
+// // user is logged in
+// router.get("/dashboard", ensureAuthenticated, (req, res) => {
+//     res.send("Hello, World!, welcome to dashboard route");
     
-})
+// })
 
 // display all products
 router.get('/products',  async(req, res) => {
@@ -22,6 +22,17 @@ router.get('/products',  async(req, res) => {
         res.status(200).json(products)
     } catch (error) {
         res.status(500).json(error)
+    }
+})
+
+// get product by id
+router.get('/products/:id', async(req, res) => {
+    try{
+        const id = req.params.id
+        const product = await Product.findById(id);
+        res.status(200).json(product)
+    }catch(err){
+        res.status(500).json({ msg: err.message })
     }
 })
 
