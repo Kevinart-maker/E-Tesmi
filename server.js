@@ -21,7 +21,9 @@ app.use(morgan("dev"))
 app.use(helmet());
 
 // enable cross origin resource sharing
-app.use(cors())
+app.use(cors({
+  credentials: true
+}))
 
 //Static middleware
 app.use('/static', express.static(path.join(__dirname, 'public')))  
