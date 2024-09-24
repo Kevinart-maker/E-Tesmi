@@ -32,6 +32,16 @@ router.post('/place-order', async (req, res) => {
 });
 
 
+router.post('/pay', async(req, res) =>{
+    try {
+        
+        
+    } 
+    catch (error) {
+        res.status(500).json({ message: error.message })
+    }
+})
+
 
 // previously ordered
 
