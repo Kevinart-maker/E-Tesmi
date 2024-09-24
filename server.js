@@ -21,14 +21,7 @@ app.use(morgan("dev"))
 app.use(helmet());
 
 // enable cross origin resource sharing
-app.use(
-    cors(
-    //     {
-    //   credentials: true,
-    //   origin: 'https://tesmidesign.com',
-    // }
-),
-  );
+app.use(cors())
 
 //Static middleware
 app.use('/static', express.static(path.join(__dirname, 'public')))  

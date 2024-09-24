@@ -31,11 +31,10 @@ router.post('/register', (req, res) => {
 
     // Check for validation errors
     if (errors.length > 0) {
-        return res.status(400).render('register', {
+        return res.status(400).json({
             errors,
             name,
             email,
-            password,
             mobileNo,
         });
     } else {
@@ -43,14 +42,9 @@ router.post('/register', (req, res) => {
         User.findOne({ email: email })
             .then((user) => {
                 if (user) {
-                    errors.push({ msg: 'Email is already registered' });
-                    return res.status(400).render('register', {
-                        errors,
-                        name,
-                        email,
-                        password,
-                        mobileNo,
-                    });
+                    return res.status(400).json({
+                        msg : "User Already Registered"
+                    })
                 } else {
                     // Create new user
                     const newUser = new User({ name, email, password, mobileNo });
@@ -64,15 +58,15 @@ router.post('/register', (req, res) => {
                         })
                         .then((user) => {
                             req.flash('success_msg', 'You have successfully signed up, proceed to login');
-                            res.render('login', { email, password });
+                            // res.redirect('/login');
+                            res.json({ message : "Login successful", user: newUser })
                         })
                         .catch((err) => {
                             console.error(err);
-                            res.status(500).render('register', {
+                            res.status(500).json({
                                 errors: [{ msg: 'Error creating user' }],
                                 name,
                                 email,
-                                password,
                                 mobileNo,
                             });
                         });
@@ -80,7 +74,7 @@ router.post('/register', (req, res) => {
             })
             .catch((err) => {
                 console.error(err);
-                res.status(500).render('register', {
+                res.status(500).json( {
                     errors: [{ msg: 'Error checking if user exists' }],
                     name,
                     email,

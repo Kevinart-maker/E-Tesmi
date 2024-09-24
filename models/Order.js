@@ -1,11 +1,13 @@
 const mongoose = require('mongoose');
+const Product = require('./Product');
+const User = require('./User')
 const Schema = mongoose.Schema;
 
 const orderSchema = new Schema({
-    userId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+    userId: { type: Schema.Types.ObjectId, ref: User, required: false }, // Guest checkout
     items: [
         {
-            productId: { type: Schema.Types.ObjectId, ref: 'Product', required: true },
+            productId: { type: Schema.Types.ObjectId, ref: Product, required: true },
             name: { type: String, required: true },
             quantity: { type: Number, required: true },
             price: { type: Number, required: true },
@@ -13,22 +15,20 @@ const orderSchema = new Schema({
         }
     ],
     subtotal: { type: Number, required: true },
-    shippingCost: { type: Number, required: true },
-    discount: { type: Number, default: 0 },
+    shippingCost: { type: Number, required: true, default: 5000 },
     totalAmount: { type: Number, required: true },
-    paymentMethod: { type: String, required: true },
-    paymentStatus: { type: String, required: true, default: 'Pending' },
+    paymentReference: { type: String, required: true }, // Paystack reference
+    paymentStatus: { type: String, required: true, default: 'Pending' }, // Updated after payment
     orderStatus: { type: String, required: true, default: 'Pending' },
     shippingAddress: {
         street: { type: String, required: true },
         city: { type: String, required: true },
         state: { type: String, required: true },
-        postalCode: { type: String, required: true },
-        country: { type: String, required: true }
-    },
-    createdAt: { type: Date, default: Date.now },
-    updatedAt: { type: Date, default: Date.now }
-});
+        mobileNo: { type: String, required: true },
+        country: { type: String, required: true },
+        email: { type: String, required: true }
+    }
+}, { timestamps: true });
 
 const Order = mongoose.model('Order', orderSchema);
 module.exports = Order;
