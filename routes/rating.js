@@ -6,7 +6,7 @@ const{ ensureAuthenticated } = require('../config/auth');
 
 
 // add rating to product
-router.post('/add-review/:productId', ensureAuthenticated, async (req, res) => {
+router.post('/add-review/:productId',  async (req, res) => {
     try {
         const { review, rating, userId } = req.body; 
         const { productId } = req.params; 
@@ -28,7 +28,7 @@ router.post('/add-review/:productId', ensureAuthenticated, async (req, res) => {
         if (existingRating) {
              res.status(400).json({ message : "You have rated this product already" }) 
             }
-            
+
         // Create new Rating
         const newRating = new Rating({
             userId,
@@ -46,7 +46,7 @@ router.post('/add-review/:productId', ensureAuthenticated, async (req, res) => {
 });
 
 // update rating
-router.put('/update-review/:productId/:ratingId', ensureAuthenticated, async (req, res) => {
+router.put('/update-review/:productId/:ratingId',  async (req, res) => {
     try {
         const { review, rating} = req.body; 
         const userId = req.user._id
@@ -79,7 +79,7 @@ router.put('/update-review/:productId/:ratingId', ensureAuthenticated, async (re
 })
 
 // delete rating
-router.delete('/delete-review/:ratingId', ensureAuthenticated, async (req, res) => {
+router.delete('/delete-review/:ratingId',  async (req, res) => {
     try {
         const{ ratingId } = req.params;
         const deletedReview = await Rating.findByIdAndDelete(ratingId);
