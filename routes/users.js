@@ -59,7 +59,7 @@ router.post('/register', (req, res) => {
                         .then((user) => {
                             req.flash('success_msg', 'You have successfully signed up, proceed to login');
                             // res.redirect('/login');
-                            res.json({ message : "Login successful", user: newUser })
+                            res.json({ message : "Sign up successful", user: newUser })
                         })
                         .catch((err) => {
                             console.error(err);
