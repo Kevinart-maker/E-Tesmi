@@ -14,17 +14,17 @@ const helmet = require('helmet')
 const MongoStore = require('connect-mongo')
 //passport config file
 
+// enable cross origin resource sharing
+app.use(cors());
+
 // Logger
 app.use(morgan("dev"))
 
 //helmet
 app.use(helmet());
 
-// enable cross origin resource sharing
-app.use(cors());
-
 //Static middleware
-app.use('/static', express.static(path.join(__dirname, 'public')))  
+app.use('/static', express.static(path.join(__dirname, 'public')));
 
 // body parser
 app.use(express.urlencoded({extended: false}));
@@ -62,13 +62,13 @@ app.use((err, req, res, next) => {
   });
   
 
-// rate-limiting
-const rateLimit = require('express-rate-limit');
-const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100, // limit each IP to 100 requests per windowMs
-});
-app.use(limiter);
+// // rate-limiting
+// const rateLimit = require('express-rate-limit');
+// const limiter = rateLimit({
+//   windowMs: 15 * 60 * 1000, // 15 minutes
+//   max: 100, // limit each IP to 100 requests per windowMs
+// });
+// app.use(limiter);
 
 
 // Routes
