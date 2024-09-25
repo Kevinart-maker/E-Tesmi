@@ -1,14 +1,14 @@
 {
   "version": 2,
+  "cors": {
+    "allowedOrigins": ["*"],
+    "allowedMethods": ["GET", "POST", "PUT", "DELETE"],
+    "allowedHeaders": ["Content-Type", "Authorization"]
+  },
   "builds": [
     {
       "src": "server.js",
-      "use": "@vercel/node",
-      "cors": {
-        "allowedOrigins": ["*"],
-        "allowedMethods": ["GET", "POST", "PUT", "DELETE"],
-        "allowedHeaders": ["Content-Type", "Authorization"]
-      }
+      "use": "@vercel/node"
     }
   ],
   "routes": [
