@@ -15,7 +15,11 @@ const MongoStore = require('connect-mongo')
 //passport config file
 
 // enable cross origin resource sharing
-app.use(cors());
+app.use(cors({
+  origin: ['http://localhost:5173', 'https://backend-tesmi.vercel.app/'],
+  credentials: true,
+  
+}));
 
 // Logger
 app.use(morgan("dev"))

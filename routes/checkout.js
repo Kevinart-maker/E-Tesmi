@@ -1,6 +1,8 @@
 const express = require('express')
 const router = express.Router();
 const Order = require('../models/Order')
+require('dotenv').config({  path: './config/.env' })
+
 const{ ensureAuthenticated } = require('../config/auth');
 const axios = require('axios');
 const https = require('https');
