@@ -62,12 +62,12 @@ router.post('/pay', async(req, res) =>{
 
        await Order.findByIdAndUpdate(orderId, { paymentReference });
 
-      //  res.status(200).json({
-      //   message : "Payment initialized",
-      //   paymentReference: paymentReference,
-      //   access_code: response.data.data.access_code
-      //  })
-       res.redirect(paymentUrl)
+       res.status(200).json({
+        message : "Payment initialized",
+        paymentReference: paymentReference,
+        access_code: response.data.data.access_code
+       })
+      //  res.redirect(paymentUrl)
        
             
     } 
