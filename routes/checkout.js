@@ -2,7 +2,12 @@ const express = require('express')
 const router = express.Router();
 const Order = require('../models/Order')
 const{ ensureAuthenticated } = require('../config/auth');
-const axios = require('axios')
+const axios = require('axios');
+const https = require('https');
+
+const API_KEY = process.env.API_KEY;
+const API_URL = process.env.API_URL;
+
 
 //place order
 router.post('/place-order', async (req, res) => {
@@ -36,8 +41,7 @@ router.post('/pay', async(req, res) =>{
     try{
        const {email, totalAmount, orderId} = req.body;
 
-       const API_KEY = process.env.API_KEY;
-       const API_URL = process.env.API_URL;
+       
 
        const requestData = {
         email : email,
@@ -52,9 +56,8 @@ router.post('/pay', async(req, res) =>{
        });
 
        const paymentReference = response.data.data.reference;
-       const paymentStatus = response.data.data.status;
 
-       await Order.findByIdAndUpdate(orderId, { paymentReference, paymentStatus });
+       await Order.findByIdAndUpdate(orderId, { paymentReference });
 
        res.status(200).json({
         message : "Payment initialized",
@@ -71,7 +74,70 @@ router.post('/pay', async(req, res) =>{
 })
 
 
+router.get('/transaction/:reference', async (req, res) => {
+  try {
+    const { reference } = req.params;
+
+    const options = {
+      hostname: 'api.paystack.co',
+      port: 443,
+      path: `/transaction/verify/${reference}`,
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${API_KEY}`,  
+      },
+    };
+
+    const paystackReq = https.request(options, apiRes => {
+      let data = '';
+
+      // Collect data chunks
+      apiRes.on('data', (chunk) => {
+        data += chunk;
+      });
+
+      // When response ends
+      apiRes.on('end', async () => {
+        try {
+          const parsedData = JSON.parse(data);
+          const paymentStatus = parsedData.data.status;
+
+          const updatedOrder = await Order.findOneAndUpdate(
+            { paymentReference: reference },  
+            { paymentStatus },
+            { new: true }  
+          );
+
+          if (!updatedOrder) {
+            return res.status(404).json({ message: 'Order not found' });
+          }
+
+          res.status(200).json({ message: 'Transaction verified', paymentStatus, updatedOrder });
+        } catch (error) {
+          res.status(500).json({ message: error.message });
+        }
+      });
+    });
+
+    // Handle request errors
+    paystackReq.on('error', error => {
+      console.error(error);
+      res.status(500).json({ message: error.message });
+    });
+
+    // End the request to Paystack
+    paystackReq.end();
+
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+
+
 // previously ordered
+router.get('/my-orders')
+
 
 
 module.exports = router;
