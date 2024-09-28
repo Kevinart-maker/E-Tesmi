@@ -4,7 +4,6 @@ const Order = require('../models/Order')
 const{ ensureAuthenticated } = require('../config/auth');
 const axios = require('axios');
 const https = require('https');
-
 const API_KEY = process.env.API_KEY;
 const API_URL = process.env.API_URL;
 
