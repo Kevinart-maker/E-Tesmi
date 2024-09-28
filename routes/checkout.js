@@ -48,6 +48,7 @@ router.post('/pay', async(req, res) =>{
         email : email,
         amount : totalAmount *100
        }
+       
 
        const response = await axios.post(`${API_URL}/transaction/initialize`, requestData, {
         headers: {
@@ -60,13 +61,14 @@ router.post('/pay', async(req, res) =>{
 
        await Order.findByIdAndUpdate(orderId, { paymentReference });
 
+       console.log(requestData,response, API_KEY, API_URL)
        res.status(200).json({
         message : "Payment initialized",
         paymentReference: paymentReference,
         paymentUrl : response.data.data.authorization_url,
         access_code: response.data.data.access_code
        })
-
+       
             
     } 
     catch (error) {

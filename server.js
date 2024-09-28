@@ -16,9 +16,9 @@ const MongoStore = require('connect-mongo')
 
 // enable cross origin resource sharing
 app.use(cors({
-  origin: ['http://localhost:5173', 'https://backend-tesmi.vercel.app/'],
+  origin: ['http://localhost:5173', 'http://localhost:3000', 'https://backend-tesmi.vercel.app/'],
   credentials: true,
-  
+
 }));
 
 // Logger
