@@ -1,0 +1,93 @@
+.products{
+    margin-top: 7rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+.products .headings{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.7rem;
+}
+.product-card-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    width: 70%;
+}
+.product-card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+.prod-card-content{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.product-card a{
+    max-width: 10rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    color: #18191a;
+}
+.product-card a .prod-briefs{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+.product-card a img{
+    max-width: 100%;
+}
+ .product-card a h3{
+    font-size: 0.7rem;
+}
+ .product-card a p{
+    font-size: 0.6rem;
+    font-weight: 600;
+}
+ .product-card a .price{
+    color: var(--secondary-color-1);
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+ .product-card a span{
+    color: var(--muted-color);
+}
+.products button{
+    padding: 0.7rem;
+    font-size: 0.8rem;
+    border: 1px solid var(--primary-color);
+    border-radius: 0.6rem;
+    background: none;
+    font-weight: 600;
+    position: relative;
+    overflow: hidden;
+}
+.products button a{
+    color: var(--primary-color);
+}
+.products button:hover a{
+    color: var(--dark-background-color);
+}
+.products button div{
+    position: absolute;
+    background-color: var(--primary-color);
+    width: 100%;
+    height: 100%;
+    bottom: 0;
+    left: -190px;
+    z-index: -1;
+}
+.products button:hover div{
+    left: 0;
+}

@@ -1,0 +1,23 @@
+.filters{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.filters .filter{
+    display: flex;
+    gap: 1rem;
+}
+.filters .filter select{
+    border: 1px solid var(--muted-color);
+    border-radius: 0.7rem;
+    padding: 0.7rem;
+}
+.filters button{
+    padding: 0.7rem;
+    border-radius: 0.7rem;
+    background-color: #18191a;
+    color: #fff;
+    border: none;
+}

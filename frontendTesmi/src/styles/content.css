@@ -1,0 +1,37 @@
+.content{
+    display: flex;
+    justify-content: space-between;
+    padding: 5rem 10rem;
+    align-items: center;
+}
+.content .left-sec{
+    display: flex;
+    gap: 1rem;
+}
+.content .right-sec{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.content .right-sec h3{
+    color: var(--primary-color);
+}
+.content .right-sec p{
+    font-size: 0.8rem;
+}
+
+@media (max-width: 900px) {
+    .content .left-sec{
+        width: 100vw;
+    }
+
+    .content .left-sec img{
+        max-width: 100%;
+    }
+     .content{
+        flex-direction: column-reverse;
+        gap: 1rem;
+        justify-content: start;
+        padding: 5rem 0;
+     }
+}

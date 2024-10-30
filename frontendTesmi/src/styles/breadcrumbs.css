@@ -1,0 +1,58 @@
+.bread-crumbs{
+    width: 100%;
+    padding: 2rem 10rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    background-color: #CCCCCC;
+}
+.bread-crumbs .top-sec{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.bread-crumbs .breadcrumbs{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.bread-crumbs .bottom-sec{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem;
+}
+.bread-crumbs .bread-card{
+    width: 100px;
+    height: 100px;
+    color: #18191a;
+    display: flex;
+    font-size: 0.7rem;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    align-items: center;
+    justify-content: space-between;
+}
+.bread-crumbs .bread-card img{
+    max-width:80px;
+}
+.bread-card .bread-content{
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    align-items: center;
+}
+
+@media (max-width:900px) {
+    .bread-crumbs{
+        padding: 1rem;
+    }
+    .bread-crumbs .bottom-sec{
+        justify-content: center;
+    }
+    .bread-crumbs .bread-card{
+        width: 15rem;
+    }
+}
