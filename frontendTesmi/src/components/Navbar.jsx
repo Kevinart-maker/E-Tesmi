@@ -47,8 +47,7 @@ const Navbar = () => {
                     <li><NavLink to='/productlist'>Shop</NavLink></li>
                     <li onClick={()=> handleFilters('women')}>Womens</li>
                     <li onClick={()=> handleFilters('men')}>Mens</li>
-                    <li onClick={()=> handleBestFilters('bestseller')}>Best Seller</li>
-                    <li>Contact</li> 
+                    <li onClick={()=> navigate('contact')}>Contact</li> 
                 </div>
 
                 <div className="right-sec">
@@ -68,7 +67,7 @@ const Navbar = () => {
                         }
                     </li>
                     <NavLink to='/cart' className='cart-icon'><i className="fa-solid fa-cart-shopping"></i>{cart.length}</NavLink>
-                    <div className="ham" onClick={handleNav}>
+                    <div className={`ham ${display}`} onClick={handleNav}>
                         <span></span>
                         <span></span>
                         <span></span>

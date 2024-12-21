@@ -10,8 +10,6 @@ const Index = () => {
             <Home />
             <ShopCards />
             <ProductsCards />
-            <Content />
-            <Features />
         </div>
     );
 }

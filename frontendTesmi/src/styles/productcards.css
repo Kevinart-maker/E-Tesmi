@@ -45,7 +45,7 @@
     width: 100%;
 }
 .product-card a img{
-    max-width: 100%;
+    max-width: 8rem;
 }
  .product-card a h3{
     font-size: 0.7rem;
@@ -90,4 +90,18 @@
 }
 .products button:hover div{
     left: 0;
+}
+
+@media (max-width: 900px) {
+    .product-card-container{
+        display: flex;
+        justify-content: start;
+        padding: 1rem;
+        padding-bottom: 3rem;
+        gap: 1rem;
+        width: 100vw;
+        overflow: hidden;
+        overflow-x: scroll;
+        flex-wrap: nowrap;
+    }
 }

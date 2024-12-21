@@ -34,12 +34,12 @@ const Home = () => {
                 <SplideSlide className="first-slide home-container">
                     <div className="hero-cover">
                         <h3>TESMI</h3>
-                        <h1>NEW COLLECTION</h1>
+                        <h1>WOMEN'S COLLECTION</h1>
                         <p>
-                            Discover the latest trends in men's, women's, and kids' fashion <br />
-                            click here to shop your style now.
+                            Upgrade your wardrobe with the newest women's fashion <br />
+                            click here to shop the latest styles now.
                         </p>
-                        <button><NavLink to='/productlist'>SHOP NOW</NavLink></button>
+                        <button onClick={()=> handleFilterClick('women')}>SHOP NOW</button>
                     </div>
     
                     <img src="/home.png" alt="" />
@@ -60,12 +60,12 @@ const Home = () => {
                 <SplideSlide className='third-slide home-container'>
                     <div className="hero-cover">
                         <h3>TESMI</h3>
-                        <h1>NEW TOPS COLLECTION</h1>
+                        <h1>BESTSELLER COLLECTION</h1>
                         <p>
                             Discover the trendiest tops of the season, <br />
                             click here to elevate your style today.
                         </p>
-                        <button onClick={()=> handleFilterClick('tops')}>SHOP NOW</button>
+                        <button onClick={()=> handleFilterClick('bestseller')}>SHOP NOW</button>
                     </div>
     
                     <img src="/hoodie.png" alt="" />

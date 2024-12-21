@@ -1,6 +1,6 @@
 import BreadCrumbs from "../components/BreadCrumbs";
 import Filters from "../components/Filters";
-import { useLocation, NavLink } from "react-router-dom";
+import { useLocation, NavLink, useNavigate } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
 
 
@@ -9,10 +9,14 @@ const ProductList = () => {
     const [products, setProducts] = useState([])
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [slice, setSlice] = useState(15)
+    const navigate = useNavigate();
 
     const handleSlice = ()=>{
       setSlice(slice + 5)
     }
+
+    const queryParams = new URLSearchParams(location.search);
+    const gender = queryParams.get('gender');
 
     useEffect(()=>{
         const queryParams = new URLSearchParams(location.search);
@@ -90,9 +94,13 @@ const ProductList = () => {
     
     return (
         <section className="product-list">
-            <BreadCrumbs />
             <div className="product-list-content">
                 <Filters results = {Products.length}/>
+                <div className="product-crumbs">
+                    <span onClick={()=> navigate('/productlist')}>shop</span>
+                    <i className="fa-solid fa-angle-right"></i>
+                    <span>{gender}</span>
+                </div>
                 <div className="product-list-container">
                     {Products}   
                 </div>

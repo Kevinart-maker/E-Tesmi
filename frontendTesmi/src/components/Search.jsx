@@ -28,7 +28,7 @@ const SearchBar = () => {
     <form className="search-input">
       <input
         type="search"
-        placeholder="Search for vehicles"
+        placeholder='search clothings'
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         onKeyPress={handleKeyPress}

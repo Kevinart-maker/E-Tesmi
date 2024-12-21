@@ -128,6 +128,18 @@
     gap: 1rem;
 }
 
+.product-crumbs{
+    display: flex;
+    justify-self: start;
+    align-self: flex-start;
+    align-items: center;
+    gap: 0.3rem;
+    font-weight: 600;
+}
+.product-crumbs span:nth-child(1){
+    cursor: pointer;
+}
+
 @media (max-width: 900px) {
     .product-detail .left-sec .product-slide-container{
         width: 100vw;

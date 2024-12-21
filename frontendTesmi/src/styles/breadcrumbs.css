@@ -51,6 +51,9 @@
     }
     .bread-crumbs .bottom-sec{
         justify-content: center;
+        flex-wrap: nowrap;
+        overflow: hidden;
+        overflow-x: scroll;
     }
     .bread-crumbs .bread-card{
         width: 15rem;

@@ -41,8 +41,7 @@ const ProductsCards = () => {
         <div className="products">
             <div className="headings">
                 <h3>Featured Products</h3>
-                <h1>BESTSELLER PRODUCTS</h1>
-                <p>Problems trying to resolve the conflict between</p>
+                <h1>RECENT PRODUCTS</h1>
             </div>
             <div className="product-card-container">
                 {Products}       

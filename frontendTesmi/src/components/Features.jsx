@@ -3,7 +3,7 @@ const Features = () => {
     const iconsData = [
         {
             img: '/icon2.png',
-            title: 'Easy Wins',
+            title: 'Easy to Use',
             content: 'Get your best looking smile now!'
         },
         {

@@ -27,6 +27,7 @@ import Cart from './components/Cart'
 import { useAuthContext } from './hooks/useAuthContext';
 import PaymentPage from './pages/PaymentPage'
 import CheckoutForm from './pages/CheckoutForm'
+import Contact from './pages/Contact'
 
 
 function App() {
@@ -43,6 +44,7 @@ function App() {
         <Route path='productlist' element={<ProductList />}/>
         <Route path='cart' element={<Cart />}/>
         <Route path='checkout' element={<CheckoutForm />}/>
+        <Route path='contact' element={<Contact />}/>
         <Route path='payment/:orderId' element={<PaymentPage />}/>
       </Routes>
       <Footer />

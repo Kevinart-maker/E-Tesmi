@@ -79,4 +79,11 @@
     .hero-cover h1{
         font-size: 2rem;
     }
+    .home-container img{
+        max-width: 100%;
+        width: 30rem;
+        position: absolute;
+        bottom: -26rem;
+        right: -5rem;
+    }
 }
