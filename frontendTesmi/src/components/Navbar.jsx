@@ -91,10 +91,10 @@ const Navbar = () => {
                     }
                 </li>
                 <SearchBar />
-                <li>Home</li>
-                <li>Product</li>
-                <li>Pricing</li>
-                <li>Contact</li>         
+                <li><NavLink to='/productlist'>Shop</NavLink></li>
+                <li onClick={()=> handleFilters('women')}>Womens</li>
+                <li onClick={()=> handleFilters('men')}>Mens</li>
+                <li onClick={()=> navigate('contact')}>Contact</li>         
             </div>
         </nav>
     );
