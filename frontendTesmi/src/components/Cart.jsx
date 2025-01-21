@@ -39,12 +39,16 @@ const Cart = () => {
                 <p className="price">${item.price}</p>
                 <div className="quantity">
                     <label>Quantity: </label>
-                    <input
-                        type="number"
+                    <select 
                         value={item.quantity}
-                        min="1"
                         onChange={(e) => handleQuantityChange(item._id, parseInt(e.target.value))}
-                    />
+                    >
+                        {[1,2,3,4,5,6,7,8,9,10].map(num => (
+                            <option key={num} value={num}>
+                                {num}
+                            </option>
+                        ))}
+                    </select>
                 </div>
             </div>
             <i className="fa-solid fa-trash" onClick={() => removeFromCart(item._id)}></i>
