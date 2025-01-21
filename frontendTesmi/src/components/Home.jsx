@@ -30,7 +30,7 @@ const Home = () => {
                         <button onClick={()=> handleFilterClick('bestseller')}>SHOP NOW</button>
                     </div>
     
-                    <img src="/hoodie.png" alt="" />
+                    <img src="/hoodie.webp" alt="" />
                 </div>
         </section>
     );
