@@ -90,7 +90,7 @@ const Ratings = (props) => {
             </div>
             )}
             <div className="line"></div>
-            <div className="review-container">
+            <div className={`review-container ${reviewMsgs.length === 0 ? 'no-review' : ''}`}>
                 {
                     reviewMsgs ? (
                         reviewMsgs.map((data, index) => (

@@ -15,7 +15,6 @@
 .product-card-container{
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     gap: 1rem;
     width: 70%;
 }
@@ -62,6 +61,7 @@
 }
  .product-card a span{
     color: var(--muted-color);
+    text-decoration: line-through;
 }
 .products button{
     padding: 0.7rem;

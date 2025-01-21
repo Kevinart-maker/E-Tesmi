@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
 import Ratings from "./Ratings";
+import { useCart } from '../context/CartContext';
 
 const ProductDetail = () => {
     const [products, setProducts] = useState([]);
@@ -11,6 +12,7 @@ const ProductDetail = () => {
     const [selectedPrice, setSelectedPrice] = useState(null); // State for the selected price
     const { id } = useParams();
     const navigate = useNavigate();
+    const { cartItems, updateCart } = useCart();
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -53,22 +55,22 @@ const ProductDetail = () => {
         const cartItem = {
             _id: products._id,
             name: products.name,
-            images: products.images[0], // Use the first image
+            images: products.images[0],
             category: products.category,
             size: selectedSize,
             price: selectedPrice,
-            quantity: 1 // Default quantity
+            quantity: 1
         };
 
-        let cart = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : [];
-        cart.push(cartItem);
-        localStorage.setItem("cart", JSON.stringify(cart));
+        const newCart = [...cartItems, cartItem];
+        updateCart(newCart);
     };
 
-    const getImageUrl = (imagePath) => {
-        return `https://backend-tesmi.vercel.app/static/${imagePath}`;
-    };
-
+    const productImages = products && products.images ? products.images.map((data, index) => (
+        <SplideSlide key={index} className="detail">
+          <img src={data} alt="" />
+        </SplideSlide>
+      )) : null;
     return (
         <section className="product-detail-container">
             <section className="product-detail">
@@ -78,11 +80,7 @@ const ProductDetail = () => {
                         aria-label = "My Favorite Images"
                         className="product-slide-container cloth"
                     >
-                        {products.images && products.images.map((data, index) => (
-                            <SplideSlide key={index}>
-                                <img src={getImageUrl(data)} alt={products.name} />
-                            </SplideSlide>
-                        ))}
+                        {productImages}
                     </Splide>
                 </div>
 
@@ -124,9 +122,10 @@ const ProductDetail = () => {
                         <div className="line"></div>
                     </div>
                     <div className="select">
-                    <button onClick={handleAddToCart}>
-                        <span>Add to cart</span>
-                        <i className="fa-solid fa-cart-shopping"></i>
+                    <button onClick={handleAddToCart} disabled={!selectedPrice}>
+                        {
+                            selectedPrice ? 'Add to cart' : 'Select a size and add to cart'
+                        }
                     </button>
                 </div>
                 </div>

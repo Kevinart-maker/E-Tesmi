@@ -19,45 +19,7 @@ const Home = () => {
 
     return ( 
         <section className="home">
-            <Splide
-                options={{
-                    arrows: false,
-                    rewind: true,
-                    type : 'loop',
-                    gap: '1rem',
-                    autoplay : true,
-                }}
-                aria-label = "My Favorite Images"
-                className="slide-container"
-            >
-
-                <SplideSlide className="first-slide home-container">
-                    <div className="hero-cover">
-                        <h3>TESMI</h3>
-                        <h1>WOMEN'S COLLECTION</h1>
-                        <p>
-                            Upgrade your wardrobe with the newest women's fashion <br />
-                            click here to shop the latest styles now.
-                        </p>
-                        <button onClick={()=> handleFilterClick('women')}>SHOP NOW</button>
-                    </div>
-    
-                    <img src="/home.png" alt="" />
-                </SplideSlide>
-                <SplideSlide className='second-slide home-container'>
-                    <div className="hero-cover">
-                        <h3>TESMI</h3>
-                        <h1>MEN'S COLLECTION</h1>
-                        <p>
-                            Upgrade your wardrobe with the newest men's fashion <br />
-                            click here to shop the latest styles now.
-                        </p>
-                        <button onClick={()=> handleFilterClick('men')}>SHOP NOW</button>
-                    </div>
-    
-                    <img src="/home2.png" alt="" />
-                </SplideSlide>
-                <SplideSlide className='third-slide home-container'>
+                <div className='third-slide home-container'>
                     <div className="hero-cover">
                         <h3>TESMI</h3>
                         <h1>BESTSELLER COLLECTION</h1>
@@ -69,12 +31,7 @@ const Home = () => {
                     </div>
     
                     <img src="/hoodie.png" alt="" />
-                </SplideSlide>
-
-            </Splide>
-
-
-
+                </div>
         </section>
     );
 }

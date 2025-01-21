@@ -26,7 +26,7 @@ const ProductsCards = () => {
     const Products = products.slice(0,10).map((data) => (
         <div className="product-card" key={data._id}>
             <NavLink to={`/products/${data._id}`}>
-                <img src='/sweat.png' alt={data.name} />
+                <img src={data.images[0]} alt={data.name} />
                 <div className="prod-briefs">
                     <h3>{data.name}</h3>
                     <p>{data.category}</p>
@@ -40,8 +40,7 @@ const ProductsCards = () => {
     return (
         <div className="products">
             <div className="headings">
-                <h3>Featured Products</h3>
-                <h1>RECENT PRODUCTS</h1>
+                <h1>RECENTLY ADDED</h1>
             </div>
             <div className="product-card-container">
                 {Products}       

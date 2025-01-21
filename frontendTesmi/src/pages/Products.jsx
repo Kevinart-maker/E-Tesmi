@@ -33,7 +33,9 @@ const Products = () => {
     
     return (
         <section className="product">
-            <BreadCrumbs />
+            {
+             //<BreadCrumbs />
+            }
             <ProductDetail />
             <ProductsCards />
         </section>

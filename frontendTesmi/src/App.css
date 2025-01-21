@@ -15,7 +15,7 @@ body{
     color: #18191a;
 }
 .index-page{
-    padding: 0rem 2rem;
+    padding: 0rem 1rem;
 }
 :root{
     --primary-color: #18191a;
@@ -45,7 +45,6 @@ body{
     justify-content: space-between;
     align-items: center;
     padding: 2rem;
-    z-index: 1000;
 }
 .desktop-nav a{
     color: #18191a;
@@ -108,28 +107,62 @@ body{
 .desktop-nav .ham span:last-child{
     width: 10px;
 }
-nav .mobile-nav-list{display: none;}
+nav .mobile-nav-list{
+  position: fixed;
+  right: -1000px;
+}
 
 .cart-icon{
     display: flex;
     gap: 0.2rem;
     align-items: center;
+    position: relative;
 }
 .cart-icon i{
     font-size: 1rem;
 }
+.cart .top-sec h2{
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.cart .top-sec a{
+  color: #18191a;
+  font-size: 1rem;
+  font-weight: 600;
+}
+.cart .top-sec i{
+  font-size: 1rem;
+}
+.cart-icon span{
+  position: absolute;
+  bottom: -10px;
+  right: -8px;
+  background-color: #18191a;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1rem;
+  height: 1rem;
+  padding: 0.2rem;
+  font-size: 0.6rem;
+}
 .search-input{
+    width: 100%;
     display: flex;
     gap: 1rem;
     align-items: center;
     border-radius: 0.6rem;
-    padding: 0.5rem;
+    padding: 0.6rem;
     background-color: #f1ebeb9c;
 }
 .search-input input{
     border: none;
     outline: none;
     background: none;
+    width: 100%;
 }
 
 li.user{
@@ -278,14 +311,21 @@ p.user-log .logout.show-logout{
     .desktop-nav .search-input{display: none;}
 
     nav .show{
+        inset: 0;
+        background-color: #fff;
         display: flex;
         flex-direction: column;
         list-style: none;
         gap: 1rem;
         align-items: center;
         padding: 1rem;
+        padding-top: 40%;
         margin-bottom: 1rem;
         font-weight: 600;
+        z-index: 100;
+    }
+    .ham.show{
+      z-index: 1000;
     }
     .ham.show span:nth-child(1){
         transform: rotate(-45deg);

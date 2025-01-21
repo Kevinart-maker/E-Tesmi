@@ -28,27 +28,30 @@ import { useAuthContext } from './hooks/useAuthContext';
 import PaymentPage from './pages/PaymentPage'
 import CheckoutForm from './pages/CheckoutForm'
 import Contact from './pages/Contact'
+import { CartProvider } from './context/CartContext';
 
 
 function App() {
+  const [login, setLogin] = useState(false)
+  const [cartPage, setCartPage] = useState(false)
   const { user } = useAuthContext()
   user && console.log('logged user', user.email)
 
   return (
-    <>
-      <Navbar />
+    <CartProvider>
+      {!login && <Navbar setCartPage={setCartPage} />}
       <Routes>
         <Route index element={<Index />}/>
-        <Route path='login' element={!user ? <Login /> : <Navigate to='/' />}/>
+        <Route path='login' element={!user ? <Login setLogin={setLogin} /> : <Navigate to='/' />}/>
         <Route path='products/:id' element={<Products />}/>
         <Route path='productlist' element={<ProductList />}/>
-        <Route path='cart' element={<Cart />}/>
+        <Route path='cart' element={<Cart setCartPage={setCartPage} />}/>
         <Route path='checkout' element={<CheckoutForm />}/>
         <Route path='contact' element={<Contact />}/>
         <Route path='payment/:orderId' element={<PaymentPage />}/>
       </Routes>
-      <Footer />
-    </>
+      {!login && <Footer />}
+    </CartProvider>
   )
 }
 

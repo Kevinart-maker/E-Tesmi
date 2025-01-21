@@ -78,9 +78,9 @@ const ProductList = () => {
     }, [location.search])
     
     const Products = filteredProducts.slice(0, slice).map((data) => (
-        <div className="product-card" key={data._id}>
+        <div className="product-card" key={data.ro_id}>
             <NavLink to={`/products/${data._id}`}>
-                <img src='/sweat.png' alt={data.name} />
+                <img src={data.images[0]} alt={data.name} />
                 <div className="prod-briefs">
                     <h3>{data.name}</h3>
                     <p>{data.category}</p>
@@ -93,19 +93,17 @@ const ProductList = () => {
     
     
     return (
-        <section className="product-list">
-            <div className="product-list-content">
-                <Filters results = {Products.length}/>
-                <div className="product-crumbs">
-                    <span onClick={()=> navigate('/productlist')}>shop</span>
-                    <i className="fa-solid fa-angle-right"></i>
-                    <span>{gender}</span>
-                </div>
-                <div className="product-list-container">
-                    {Products}   
-                </div>
-                <button onClick={handleSlice}>Load more</button>
+        <section className="product-list-content">
+            <Filters results = {Products.length}/>
+            <div className="product-crumbs">
+                <span onClick={()=> navigate('/productlist')}>shop</span>
+                <i className="fa-solid fa-angle-right"></i>
+                <span>{gender}</span>
             </div>
+            <div className="product-list-container">
+                {Products}   
+            </div>
+            <button onClick={handleSlice}>Load more</button>
         </section>
     );
 }

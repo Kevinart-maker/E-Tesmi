@@ -3,6 +3,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import SearchBar from "./Search";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useLogout } from "../hooks/useLogout";
+import { useCart } from '../context/CartContext';
 
 const Navbar = () => {
     const [nav, setNav] = useState(false)
@@ -10,11 +11,7 @@ const Navbar = () => {
     const { user } = useAuthContext()
     const { logout } = useLogout()
     const navigate = useNavigate();
-    const [cart, setCart] = useState(() => {
-            // Retrieve cart from localStorage
-            const savedCart = localStorage.getItem("cart");
-            return savedCart ? JSON.parse(savedCart) : [];
-        });
+    const { cartItems } = useCart();
 
     const handleNav = () => {
         setNav(!nav)
@@ -66,7 +63,7 @@ const Navbar = () => {
                         ) : (<NavLink to='/login'>Login / Register</NavLink>)
                         }
                     </li>
-                    <NavLink to='/cart' className='cart-icon'><i className="fa-solid fa-cart-shopping"></i>{cart.length}</NavLink>
+                    <NavLink to='/cart' className='cart-icon'><i className="fa-solid fa-cart-shopping"></i><span>{cartItems.length}</span></NavLink>
                     <div className={`ham ${display}`} onClick={handleNav}>
                         <span></span>
                         <span></span>

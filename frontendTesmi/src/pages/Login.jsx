@@ -1,15 +1,23 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLogin } from '../hooks/useLogin'
 import { useSignup } from "../hooks/useSignup";
 
-const Login = () => {
+const Login = ({ setLogin }) => {
     const [hide, setHide] = useState(true);
     const [ email, setEmail ] = useState('')
     const [ password, setPassword ] = useState('')
     const [ name, setName ] = useState('')
     const [ number, setNumber ] = useState('')
     const { login, error, loading, msg } = useLogin()
-    const { signup, error: signupError, msg: signupMsg, success } = useSignup()
+    const { signup, error: signupError, msg: signupMsg, success, loading: signupLoading } = useSignup()
+
+    console.log('signupLoading: ', signupLoading)
+    console.log('loginLoading: ', loading)
+
+    useEffect(()=>{
+        setLogin(true);
+        return () => setLogin(false);
+    }, [setLogin])
 
     const handleSignUp = async (e) =>{
         e.preventDefault();
@@ -62,7 +70,12 @@ const Login = () => {
                                 value={password}
                             />
                         </label>
-                        <button onClick={handleSubmit}>Continue</button>
+                        <button 
+                            onClick={handleSubmit} 
+                            disabled={loading}
+                        >
+                            {loading ? 'Loading...' : 'Continue'}
+                        </button>
                     </div>
                     {error && (<div className="error-msg">{error}</div>)}
                 </div>
@@ -105,7 +118,12 @@ const Login = () => {
                                 value={password}
                             />
                         </label>
-                        <button onClick={handleSignUp}>Continue</button>
+                        <button 
+                            onClick={handleSignUp} 
+                            disabled={loading}
+                        >
+                            {signupLoading ? 'Loading...' : 'Continue'}
+                        </button>
                     </div>
                     {signupError && (<div className="error-msg">{signupError}</div>)}
                 </div>

@@ -1,7 +1,3 @@
-.home{
-    padding: 0 2rem;
-}
-
 .home a{
     color: #fff;
 }
@@ -66,15 +62,20 @@
 }
 .third-slide.home-container button{
     background-color: #91cacf;
+    border-radius: 1rem;
+    font-size: 0.7rem;
+    padding: 0.5rem 1.2rem;
+    font-weight: 600;
 }
 
 @media (max-width: 900px) {
     .home{
-        padding: 0;
+        padding: 0 0;
     }
     .home-container{
         flex-direction: column;
-        height: 85vh;
+        height: 80vh;
+        padding: 2rem;
     }
     .hero-cover h1{
         font-size: 2rem;

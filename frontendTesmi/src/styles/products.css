@@ -60,7 +60,7 @@
 }
 .ratings .review-container{
     width: 100%;
-    height: 50vh;
+    height: auto;
     overflow: auto;
     padding: 1rem;
 }
@@ -88,6 +88,10 @@
     background-color: #18191a;
     border: none;
     color: #fff;
+}
+
+.review-container.no-review{
+    display: none;
 }
 
 @media (max-width: 900px) {
