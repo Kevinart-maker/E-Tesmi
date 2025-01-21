@@ -86,7 +86,7 @@ const ProductList = () => {
                     <p>{data.category}</p>
                 </div>
                 <div className="line"></div>
-                <p className="price"><span><i className="fa-solid fa-naira-sign"></i>{data.price[0].amount}</span> <content><i className="fa-solid fa-naira-sign"></i>{data.price[0].amount}</content></p>
+                <p className="price"><span>${data.price[0].amount}</span> <content><i className="fa-solid fa-naira-sign"></i>{data.price[0].amount}</content></p>
             </NavLink>
         </div>
     ))

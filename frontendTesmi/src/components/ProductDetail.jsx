@@ -96,7 +96,7 @@ const ProductDetail = () => {
                     <div className="price">
                         <h3>Price: </h3>
                         {selectedPrice ? (
-                            <p><i className="fa-solid fa-naira-sign"></i>{selectedPrice}</p>
+                            <p>${selectedPrice}</p>
                         ) : <p>Select a size to view price</p>}
                     </div>
 

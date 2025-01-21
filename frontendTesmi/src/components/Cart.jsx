@@ -75,7 +75,7 @@ const Cart = () => {
                     <div className="bottom-sec">
                         <div className="subs">
                             <h4>Sub-total</h4>
-                            <p><i className="fa-solid fa-naira-sign"></i>{totalPrice.toFixed(2)}</p>
+                            <p>${totalPrice.toFixed(2)}</p>
                         </div>
                         <div className="line"></div>
                         <button onClick={() => navigate('/checkout')} disabled={cartItems.length === 0}>CHECKOUT</button>
